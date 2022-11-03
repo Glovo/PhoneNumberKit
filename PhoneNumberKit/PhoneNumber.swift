@@ -26,6 +26,24 @@ public struct PhoneNumber: Codable {
     public let numberExtension: String?
     public let type: PhoneNumberType
     public let regionID: String?
+  
+  public init(
+    numberString: String,
+    countryCode: UInt64,
+    leadingZero: Bool,
+    nationalNumber: UInt64,
+    numberExtension: String?,
+    type: PhoneNumberType,
+    regionID: String?
+  ) {
+    self.numberString = numberString
+    self.countryCode = countryCode
+    self.leadingZero = leadingZero
+    self.nationalNumber = nationalNumber
+    self.numberExtension = numberExtension
+    self.type = type
+    self.regionID = regionID
+  }
 }
 
 extension PhoneNumber: Equatable {
