@@ -7,8 +7,8 @@
 //
 
 import Foundation
-#if os(iOS)
-import CoreTelephony
+#if canImport(Contacts)
+import Contacts
 #endif
 
 public typealias MetadataCallback = (() throws -> Data?)
@@ -294,26 +294,25 @@ public final class PhoneNumberKit: NSObject {
     ///
     /// - returns: A computed value for the user's current region - based on the iPhone's carrier and if not available, the device region.
     public class func defaultRegionCode() -> String {
-#if os(iOS) && !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
-        let networkInfo = CTTelephonyNetworkInfo()
-        var carrier: CTCarrier? = nil
-        if #available(iOS 12.0, *) {
-            carrier = networkInfo.serviceSubscriberCellularProviders?.values.first
-        } else {
-            carrier = networkInfo.subscriberCellularProvider
+        #if canImport(Contacts)
+        if #available(iOS 9, macOS 10.11, macCatalyst 13.1, watchOS 2.0, *) {
+            // macCatalyst OS bug if language is set to Korean
+            //CNContactsUserDefaults.shared().countryCode will return ko instead of kr
+            // Failed parsing any phone number.
+            let countryCode = CNContactsUserDefaults.shared().countryCode.uppercased()
+            #if targetEnvironment(macCatalyst)
+                if "ko".caseInsensitiveCompare(countryCode) == .orderedSame {
+                    return "KR"
+                }
+            #endif
+            return countryCode
+            
         }
-
-        if let isoCountryCode = carrier?.isoCountryCode {
-            return isoCountryCode.uppercased()
-        }
-#endif
+        #endif
+        
         let currentLocale = Locale.current
-        if #available(iOS 10.0, *), let countryCode = currentLocale.regionCode {
+        if let countryCode = (currentLocale as NSLocale).object(forKey: .countryCode) as? String {
             return countryCode.uppercased()
-        } else {
-            if let countryCode = (currentLocale as NSLocale).object(forKey: .countryCode) as? String {
-                return countryCode.uppercased()
-            }
         }
         return PhoneNumberConstants.defaultCountry
     }
