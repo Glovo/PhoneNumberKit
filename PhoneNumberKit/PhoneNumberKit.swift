@@ -305,6 +305,12 @@ public final class PhoneNumberKit: NSObject {
                     return "KR"
                 }
             #endif
+
+            // When the region is set to world (the default one), CNContactsUserDefaults returns an invalid country
+            // so instead of "001" we will return a valid one "ES"
+            if countryCode == "001" {
+              return "ES"
+            }
             return countryCode
             
         }
