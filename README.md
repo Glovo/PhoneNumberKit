@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📚 PhoneNumberKit
+# PhoneNumberKit
 
 **Glovo's fork of the Swift phone-number library · parse · format · validate · as-you-type**
 
@@ -10,14 +10,13 @@ Google's libphonenumber metadata. This repo **is** Glovo's fork of
 plus five Glovo commits. It **is not** a service and deploys nothing; apps pull it in as a
 Swift Package, CocoaPod or Carthage framework.
 
-[![Swift](https://img.shields.io/badge/Swift-5.3_tools-F05138?logo=swift&logoColor=white)](Package.swift)
-[![Platforms](https://img.shields.io/badge/platforms-iOS_9_%7C_macOS_10.10_%7C_tvOS_9_%7C_watchOS_2-lightgrey?logo=apple)](Package.swift)
+[![Swift](https://img.shields.io/badge/Swift-F05138?logo=swift&logoColor=white)](Package.swift)
+[![Platforms](https://img.shields.io/badge/platforms-iOS_9_%7C_macOS_10.10_%7C_tvOS_9_%7C_watchOS-lightgrey?logo=apple)](Package.swift)
 [![SwiftPM](https://img.shields.io/badge/SwiftPM-compatible-F05138?logo=swift&logoColor=white)](Package.swift)
-[![CocoaPods](https://img.shields.io/badge/CocoaPods-3.3.6-EE3322?logo=cocoapods&logoColor=white)](PhoneNumberKit.podspec)
+[![CocoaPods](https://img.shields.io/badge/CocoaPods-EE3322?logo=cocoapods&logoColor=white)](PhoneNumberKit.podspec)
 [![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D)](PhoneNumberKit.xcodeproj/xcshareddata/xcschemes)
 <br/>
 [![Fork of](https://img.shields.io/badge/fork_of-marmelroy%2FPhoneNumberKit-24292F?logo=github)](https://github.com/marmelroy/PhoneNumberKit)
-[![Test files](https://img.shields.io/badge/test_files-4-blue)](PhoneNumberKitTests)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 </div>
@@ -80,7 +79,7 @@ Glovo commits are:
 | :books: | Best-in-class metadata from Google's libPhoneNumber project. |
 | :trophy: | Fully tested to match the accuracy of Google's JavaScript implementation of libPhoneNumber. |
 | :iphone: | Built for iOS. Picks the default region from the device (see the Default region row above). |
-| 📝 | Editable (!) AsYouType formatter for UITextField. |
+| | Editable (!) AsYouType formatter for UITextField. |
 | :us: | Convert country codes to country names and vice versa. |
 
 </details>
@@ -364,7 +363,7 @@ swiftformat .         # picks up .swiftformat
 
 ```text
 .
-├── PhoneNumberKit/                       ⭐ library source (SwiftPM target "PhoneNumberKit")
+├── PhoneNumberKit/                       source of truth: library source (SwiftPM target "PhoneNumberKit")
 │   ├── PhoneNumberKit.swift              public entry point: parse, format, countries, defaultRegionCode()
 │   ├── PhoneNumber.swift                 immutable PhoneNumber struct
 │   ├── ParseManager.swift · PhoneNumberParser.swift · Formatter.swift · PartialFormatter.swift
